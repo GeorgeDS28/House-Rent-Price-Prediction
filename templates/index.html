@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+  <head>
+    <title>House Rent Predictor</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>🏠 Rent Prediction</h1>
+
+      <form action="/predict" method="POST">
+        <input type="number" name="bhk" placeholder="BHK" required />
+        <input type="number" name="size" placeholder="Size (sq ft)" required />
+        <input type="number" name="bathroom" placeholder="Bathrooms" required />
+        <input type="number" name="floor" placeholder="Floor Number" required />
+
+        <select name="city">
+          <option value="Mumbai">Mumbai</option>
+          <option value="Delhi">Delhi</option>
+          <option value="Bangalore">Bangalore</option>
+          <option value="Kolkata">Kolkata</option>
+          <option value="Chennai">Chennai</option>
+        </select>
+
+        <select name="furnishing">
+          <option value="Semi-Furnished">Semi-Furnished</option>
+          <option value="Furnished">Furnished</option>
+          <option value="Unfurnished">Unfurnished</option>
+        </select>
+
+        <button type="submit">Predict Rent</button>
+      </form>
+
+      {% if prediction %}
+      <h2 class="result">Estimated Rent: {{ prediction }}</h2>
+      {% endif %}
+    </div>
+  </body>
+</html>
